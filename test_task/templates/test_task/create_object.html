@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title>Test Task</title>
+  </head>
+  <body>
+    <button id="btn-add">Add field</button>
+    <form action="{% url 'create-object' %}" method="post">
+      {% csrf_token %}
+      <div id="wrapper">
+        <div>
+          <label for="name">name</label>
+          <input type="text" name="name"/>
+        </div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'view-objects' %}">View all submissions</a>
+  </body>
+</html>
+
+<script>
+$(document).ready(function(){
+    var i = 1;
+    var fieldName = "name";
+    $("#btn-add").click(function(){
+      $("#wrapper").append("<div><label for=" + fieldName + i + ">" + fieldName + i + "</label><input type=\"text\" name=" + fieldName + i + "></div>");
+       i++;
+      });
+});
+</script>
